@@ -273,7 +273,8 @@
       
         
           
-            <h1 id="File-System"><a href="#File-System" class="headerlink" title="File System"></a>File System</h1><h2 id="Abstraction"><a href="#Abstraction" class="headerlink" title="Abstraction"></a>Abstraction</h2><h3 id="File"><a href="#File" class="headerlink" title="File"></a>File</h3><p>a named collection of data in a file system. For example,the programs /Applications/Calculator or /ProgramFiles/TextEdit areeach files, as are the data /home/Bob/correspondence/letter-to-mom.txtor /home/Bob/Classes/OS/hw1.txt.</p>
+            <h2 id="Abstraction"><a href="#Abstraction" class="headerlink" title="Abstraction"></a>Abstraction</h2><p>This is my learning notes of File system, I hope it would be helpful.</p>
+<h3 id="File"><a href="#File" class="headerlink" title="File"></a>File</h3><p>a named collection of data in a file system. For example,the programs /Applications/Calculator or /ProgramFiles/TextEdit areeach files, as are the data /home/Bob/correspondence/letter-to-mom.txtor /home/Bob/Classes/OS/hw1.txt.</p>
 <ul>
 <li>file metadata: information about the file that is understood and managed by the operatingsystem.</li>
 <li>file data: whatever information a user or application puts in it.</li>
@@ -312,10 +313,8 @@
 <p>For example, in Linux, applications can access files directly using system calls (e.g., open(), read(), write(), and close().) Alternatively, applications can use the stdio library calls (e.g., fopen(), fread(), fwrite(), and fclose()). The advantage of the latter is that the library includes buffers to aggregate a program’s small reads and writes into system calls that access larger blocks, which can reduce overheads. For example, if a program uses the library function fread() to read 1 byte of data, the fread() implementation may use the read() system call to read a larger block of data (e.g., 4 KB) into a buffer maintained by the library in the application’s address space. Then, if the process calls fread() again to read another byte, the library just returns the byte from the buffer without needing to do a system call.</p>
 </blockquote>
 <ul>
-<li><p>Block cache. Typical storage devices are much slower than a computer’s main memory. The operating system’s block cache therefore caches recently read blocks, and it buffers recently written blocks so that they can be written back to the storage device at a later time.</p>
-</li>
-<li><p>Prefetching. Operating systems use prefetching to improve I/O performance. For example, if a process reads the first two blocks of a file, the operating system may prefetch the next ten blocks.</p>
-</li>
+<li>Block cache. Typical storage devices are much slower than a computer’s main memory. The operating system’s block cache therefore caches recently read blocks, and it buffers recently written blocks so that they can be written back to the storage device at a later time.</li>
+<li>Prefetching. Operating systems use prefetching to improve I/O performance. For example, if a process reads the first two blocks of a file, the operating system may prefetch the next ten blocks.</li>
 </ul>
 <h3 id="Device-Driver"><a href="#Device-Driver" class="headerlink" title="Device Driver"></a>Device Driver</h3><p>Device drivers translate between the high level abstractions implemented by the operating system and the hardware-specific details of I/O devices.</p>
 <p>Layering helps simplify operating systems by providing common ways to access various classes of devices. For example, for any given operating system, storage device drivers typically implement a standard block device interface that allows data to be read or written in fixed-sized blocks (e.g., 512, 2048, or 4096 bytes).</p>
@@ -330,167 +329,6 @@
 </ul>
 <p>When using direct memory access (DMA), the I/O device copies a block of data between its own internal memory and the system’s main memory.</p>
 <p>simple operating system could use memory-mapped I/O to provide a target physical address, transfer length, and operation code to the device. Then, the device copies data to or from the target address without requiring additional processor involvement.</p>
-<h3 id="Puting-together"><a href="#Puting-together" class="headerlink" title="Puting together"></a>Puting together</h3><ol>
-<li>a process issues a system call like read() to read data from disk into the process’s memory, the operating system moves the calling thread to a wait queue. </li>
-<li>the operating system uses memory-mapped I/O both to tell the disk to read the requested data and to set up DMA so that the disk can place that data in the kernel’s memory.</li>
-<li>The disk then reads the data and DMAs it into main memory; once that is done, the disk triggers an interrupt. </li>
-<li>The operating system’s interrupt handler then copies the data from the kernel’s buffer into the process’s address space. </li>
-<li>Finally, the operating system moves the thread the ready list. When the thread next runs, it will returns from the system call with the data now present in the specified buffer.</li>
-</ol>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>Anderson, Thomas. “Operating Systems Principles and Practice, Volume 4: Persistent Storage“</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/02/File system notes/" itemprop="url">
-                  File system notes
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-05-02T10:41:39+08:00" content="2016-05-02">
-              2016-05-02
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="File-System"><a href="#File-System" class="headerlink" title="File System"></a>File System</h1><h2 id="Abstraction"><a href="#Abstraction" class="headerlink" title="Abstraction"></a>Abstraction</h2><h3 id="File"><a href="#File" class="headerlink" title="File"></a>File</h3><p>a named collection of data in a file system. For example,the programs /Applications/Calculator or /ProgramFiles/TextEdit areeach files, as are the data /home/Bob/correspondence/letter-to-mom.txtor /home/Bob/Classes/OS/hw1.txt.</p>
-<ul>
-<li>file metadata: information about the file that is understood and managed by the operatingsystem.</li>
-<li>file data: whatever information a user or application puts in it.</li>
-</ul>
-<h3 id="Directory"><a href="#Directory" class="headerlink" title="Directory"></a>Directory</h3><p>a directory is a list ofhuman-readable names and a mapping from each name to a specific underlyingfile or directory. One common metaphor is that a directory is a folder thatcontains documents (files) and other folders (directories).</p>
-<p>Concept: Home directory(cd)  Root directory</p>
-<p>Directory in Linux must be acrylic cycle!!!</p>
-<p><em>*To execute a file, the operating system must determine whether it is a binary file or ascript. Linux does this by having executable files begin with a magic number that identifiesthe file’s format. For example, ELF binary executables begin with the four bytes 0x7f,0x45, 0x4c, and 0x46 (the ASCII characters DEL, E, L, and F); Similarly,script files begin with #! followed by the name of the interpreter that should be used torun the script (e.g., a script might begin with #!/bin/sh to be executed using the Bourneshell or #!/usr/bin/perl to be executed using the perl interpreter.</em></p>
-<p><em>Alternative approaches include determining a file’s type by its name extension—thecharacters after the last dot (.) in the file’s name (e.g., .exe, .pl, or .sh)—or includinginformation about a file’s type in its metadata</em></p>
-<h3 id="Hard-link"><a href="#Hard-link" class="headerlink" title="Hard link"></a>Hard link</h3><p>The mapping between a name and the underlying file is hard link.</p>
-<p><strong>difference</strong> between soft link: A symbolic linkis a directory mappings from a file name to another file name. </p>
-<h3 id="Volumn"><a href="#Volumn" class="headerlink" title="Volumn"></a>Volumn</h3><p>A volume is a collection of physical storage resources that form alogical storage device.</p>
-<p>A single computer can make use of multiple file systems stored on multiple volumes by <strong>mounting</strong> multiple volumes in a single logical hierarchy. Mounting a volume on an existing file system creates a mapping from some path in the existing file system to the root directory of the mounted volume’s file system and lets the mounted file system control mappings for all extensions of that path.</p>
-<h4 id="example"><a href="#example" class="headerlink" title="example"></a>example</h4><p> <img src="/Users/tommytu/Desktop/屏幕快照 2016-05-02 上午9.42.32.png" alt="屏幕快照 2016-05-02 上午9.42.32"></p>
-<p> <img src="/Users/tommytu/Desktop/屏幕快照 2016-05-02 上午9.43.40.png" alt="屏幕快照 2016-05-02 上午9.43.40"></p>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="creating-and-delete-files"><a href="#creating-and-delete-files" class="headerlink" title="creating and delete files"></a>creating and delete files</h3><p><code>Create(pathname)</code> creates a new file that has initial metadata but no other data, and it creates a name for that file in a directory</p>
-<p><code>Link(existingName, newName)</code> creates a hard link—a new path name for an existing file. After asuccessful call to link(), there are multiple path names that refer to the sameunderlying .</p>
-<p><code>unlink(pathName)</code> Remove the specified name for a file from its direc-tory; if that was the only name for the underlyingfile, then remove the file and free its resources.</p>
-<p><code>mkdir(pathName)</code>  Create a new directory with the specified name.</p>
-<p><code>rmdir(pathName)</code>  Remove the directory with the specified name.</p>
-<h3 id="Open-and-close"><a href="#Open-and-close" class="headerlink" title="Open and close"></a>Open and close</h3><p><code>fileDescriptor =open(pathName)</code> Prepare the calling process for access to the speci-fied file (e.g., check access permissions and initial-ize kernel data structures for tracking per-processstate of open files)</p>
-<p><code>close(fileDescriptor)</code> Release resources associated with the specifiedopen file</p>
-<p>Encapsulate <code>read</code> into <code>open</code> Benefits:</p>
-<ul>
-<li>path parsing and permission checkingcan be done just when a file is opened and need not be repeated on each reador write.</li>
-<li>when a process opens a file, the operating system creates adata structure that stores information about the process’s open file such as thefile’s ID, whether the process can write or just read the file, and a pointer tothe process’s current position within the file.</li>
-</ul>
-<h3 id="File-access"><a href="#File-access" class="headerlink" title="File access"></a>File access</h3><p><code>read(fileDescriptor, buf, len)</code> Read len bytes from the process’s current positionin the open file fileDescriptor and copy the re-sults to a bu↵er buf in the application’s memory.</p>
-<p><code>write(fileDescriptor, len, buf)</code> Write len bytes of data from a buffer buf in theprocess’s memory to the process’s current positionin the open file fileDescriptor.</p>
-<p><code>seek(fileDescriptor, offset)</code> Change the process’s current position in the openfile fileDescriptor to the specified offset.</p>
-<p><code>dataPtr =mmap(fileDescriptor, off, len)</code> Set up a mapping between the data in the filefileDescriptor from off to off + len and anarea in the application’s virtual memory fromdataPtr to dataPtr + len.</p>
-<p><code>munmap(dataPtr, len)</code> Remove the mapping between the application’svirtual memory and a mapped file.</p>
-<p><code>fsync(fileDescriptor)</code> Force to disk all bfeuffed, dirty pages for the fileassociated with fileDescriptor. (for reliability)</p>
-<h2 id="Software-Layer"><a href="#Software-Layer" class="headerlink" title="Software Layer"></a>Software Layer</h2><p> <img src="/Users/tommytu/Desktop/屏幕快照 2016-05-02 上午10.08.23.png" alt="屏幕快照 2016-05-02 上午10.08.23"></p>
-<h3 id="API-and-Performance"><a href="#API-and-Performance" class="headerlink" title="API and Performance"></a>API and Performance</h3><ul>
-<li><p>System calls and libraries.</p>
-<blockquote>
-<p>For example, in Linux, applications can access files directly using system calls (e.g., open(), read(), write(), and close().) Alternatively, applications can use the stdio library calls (e.g., fopen(), fread(), fwrite(), and fclose()). The advantage of the latter is that the library includes buffers to aggregate a program’s small reads and writes into system calls that access larger blocks, which can reduce overheads. For example, if a program uses the library function fread() to read 1 byte of data, the fread() implementation may use the read() system call to read a larger block of data (e.g., 4 KB) into a buffer maintained by the library in the application’s address space. Then, if the process calls fread() again to read another byte, the library just returns the byte from the buffer without needing to do a system call.</p>
-</blockquote>
-</li>
-<li><p>Block cache. Typical storage devices are much slower than a computer’s main memory. The operating system’s block cache therefore caches recently read blocks, and it buffers recently written blocks so that they can be written back to the storage device at a later time.</p>
-</li>
-<li><p>Prefetching. Operating systems use prefetching to improve I/O performance. For example, if a process reads the first two blocks of a file, the operating system may prefetch the next ten blocks.</p>
-</li>
-</ul>
-<h3 id="Device-Driver"><a href="#Device-Driver" class="headerlink" title="Device Driver"></a>Device Driver</h3><p>Device drivers translate between the high level abstractions implemented by the operating system and the hardware-specific details of I/O devices.</p>
-<p>Layering helps simplify operating systems by providing common ways to access various classes of devices. For example, for any given operating system, storage device drivers typically implement a standard block device interface that allows data to be read or written in fixed-sized blocks (e.g., 512, 2048, or 4096 bytes).</p>
-<p>To improve <strong>reliability</strong>, operating systems are increasingly using protection techniques similar to those used to isolate user-level programs to isolate device drivers from the kernel and from each other.</p>
-<ul>
-<li><p>Memory-mapped I/O</p>
-<p>Each I/O device has controller with a set of registers that can be written and read to transmit commands and data to and from the devices.  Memory-mapped I/O maps each device’s control registers to a range of physical addresses on the memory bus. Reads and writes by the CPU to this physical address range do <strong>not</strong> go to main memory. Instead, they go to registers on the I/O devices’s controllers. Thus, the operating system’s keyboard device driver might learn the value of the last key pressed by reading from physical address, say, 0xC00002000.</p>
-<p><img src="/Users/tommytu/Desktop/屏幕快照 2016-05-02 上午10.26.46.png" alt="屏幕快照 2016-05-02 上午10.26.46"></p>
-<p>physical addresses from 0xC0001000 to 0xC0001FFF access registers in the disk controller.</p>
-</li>
-<li><p>DMA (direct memory access)</p>
-<p>When using direct memory access (DMA), the I/O device copies a block of data between its own internal memory and the system’s main memory.</p>
-<p>simple operating system could use memory-mapped I/O to provide a target physical address, transfer length, and operation code to the device. Then, the device copies data to or from the target address without requiring additional processor involvement.</p>
-</li>
-</ul>
 <h3 id="Puting-together"><a href="#Puting-together" class="headerlink" title="Puting together"></a>Puting together</h3><ol>
 <li>a process issues a system call like read() to read data from disk into the process’s memory, the operating system moves the calling thread to a wait queue. </li>
 <li>the operating system uses memory-mapped I/O both to tell the disk to read the requested data and to set up DMA so that the disk can place that data in the kernel’s memory.</li>
@@ -670,7 +508,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
